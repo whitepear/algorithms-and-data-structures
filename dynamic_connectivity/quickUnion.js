@@ -3,19 +3,19 @@
 function quickUnion(n) {
 	// create object to be returned
 	var quickUnionObj = {
-		idArr = []
+		ids = []
 	};
 	
 	// fill id array with values equal to indices
-	for (var i = 0; i <= n; i++) {
-		quickUnionObj.idArr[i] = i;
+	for (var i = 0; i < n; i++) {
+		quickUnionObj.ids[i] = i;
 	}
 
 	// method for finding the root node of a component tree
 	quickUnionObj.root = function(i) {
 		// chase parent pointers until root is reached
-		while (i !== this.idArr[i]) {
-			i = this.idArr[i];
+		while (i !== this.ids[i]) {
+			i = this.ids[i];
 		}
 		return i;
 	}
@@ -29,7 +29,7 @@ function quickUnion(n) {
 	quickUnionObj.union = function(nodeOne, nodeTwo) {
 		var rootOne = this.root(nodeOne);
 		var rootTwo = this.root(nodeTwo);
-		this.idArr[rootOne] = rootTwo;
+		this.ids[rootOne] = rootTwo;
 	}
 
 	return quickUnionObj;
