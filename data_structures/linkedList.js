@@ -1,13 +1,9 @@
 // This code uses a factory pattern. Create objects using the factory functions.
 
-// The protoNode and protoSinglyList objects are used as holders of methods to which
-// the factory-created objects can delegate. 
-// Delegation is facilitated by the fact that a factory-created object is linked
-// on creation to either protoNode or protoSinglyList.
-
-var protoNode = {
-
-};
+// The protoSinglyList object is used as a holder of methods to which
+// factory-created list objects can delegate. 
+// Delegation is facilitated by the fact that a factory-created list object is linked
+// on creation to protoSinglyList.
 
 var protoSinglyList = {
 	add: function(value) {
@@ -76,7 +72,6 @@ var protoSinglyList = {
 	}
 	
 	// 3rd use-case: any other node is removed
-	count = 1;
 	while (count < position) {
 		beforeNodeToDelete = currentNode;
 		nodeToDelete = currentNode.next;
@@ -94,11 +89,11 @@ var protoSinglyList = {
 };
 
 function factoryNode(data) {
-	// link and initialise object
-	var node = Object.create(protoNode);
-	node.data = data;
-	node.next = null;
-	return node;
+	// initialise object
+	return {
+		data: data,
+		next: null
+	};
 }
 
 function factorySinglyList() {
@@ -116,5 +111,7 @@ test.add(3);
 test.add(4);
 test.add(5);
 console.log(test._length, JSON.stringify(test));
+test.remove(5);
 test.remove(2);
+test.remove(1);
 console.log(test._length, JSON.stringify(test));
