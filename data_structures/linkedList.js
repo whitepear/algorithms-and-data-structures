@@ -10,7 +10,7 @@ var protoSinglyList = {
 		var node = factoryNode(value);
 		currentNode = this.head;
 
-		// 1st-use case: empty list
+		// 1st use-case: empty list
 		if (!currentNode) {
 			this.head = node;
 			this._length++;
@@ -18,7 +18,7 @@ var protoSinglyList = {
 			return node;
 		}
 
-		// 2nd-use case: non-empty list
+		// 2nd use-case: non-empty list
 		while (currentNode.next) {
 			currentNode = currentNode.next;
 		}
@@ -31,11 +31,11 @@ var protoSinglyList = {
 	searchNodeAt: function(position) {
 		var currentNode = this.head;
 		var length = this._length;
-		var count = 1;
+		var count = 0;
 		var message = {	failure: 'Failure: non-existent node in this list.'	};
 
 		// 1st use-case: invalid position
-		if (length === 0 || position < 1 || position > length) {
+		if (length === 0 || position < 0 || position > length - 1) {
 			throw new Error(message.failure);
 		}
 
@@ -50,19 +50,19 @@ var protoSinglyList = {
 	remove: function(position) {
 		var currentNode = this.head;
 		var length = this._length;
-		var count = 1;
+		var count = 0;
 		var message = { failure: 'Failure: non-existent node in this list.' };
 		var beforeNodeToDelete = null;
 		var nodeToDelete = null;
 		var deletedNode = null;
 
 	// 1st use-case: invalid position
-	if (position < 0 || position > length) {
+	if (position < 0 || position > length - 1) {
 		throw new Error(message.failure);
 	}
 
 	// 2nd use-case: the first node is removed
-	if (position === 1) {
+	if (position === 0) {
 		this.head = currentNode.next;
 		deletedNode = currentNode;
 		currentNode = null;
@@ -111,7 +111,7 @@ test.add(3);
 test.add(4);
 test.add(5);
 console.log(test._length, JSON.stringify(test));
-test.remove(5);
+test.remove(4);
 test.remove(2);
 test.remove(1);
 console.log(test._length, JSON.stringify(test));
