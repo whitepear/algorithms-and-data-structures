@@ -32,11 +32,10 @@ var protoSinglyList = {
 		var currentNode = this.head;
 		var length = this._length;
 		var count = 0;
-		var message = {	failure: 'Failure: non-existent node in this list.'	};
 
 		// 1st use-case: invalid position
 		if (length === 0 || position < 0 || position > length - 1) {
-			throw new Error(message.failure);
+			throw new Error('Failure: non-existent node in this list.');
 		}
 
 		// 2nd use-case: a valid position
@@ -51,40 +50,31 @@ var protoSinglyList = {
 		var currentNode = this.head;
 		var length = this._length;
 		var count = 0;
-		var message = { failure: 'Failure: non-existent node in this list.' };
 		var beforeNodeToDelete = null;
-		var nodeToDelete = null;
-		var deletedNode = null;
 
-	// 1st use-case: invalid position
-	if (position < 0 || position > length - 1) {
-		throw new Error(message.failure);
-	}
+		// 1st use-case: invalid position
+		if (length === 0 || position < 0 || position > length - 1) {
+			throw new Error('Failure: non-existent node in this list.');
+		}
 
-	// 2nd use-case: the first node is removed
-	if (position === 0) {
-		this.head = currentNode.next;
-		deletedNode = currentNode;
-		currentNode = null;
+		// 2nd use-case: the first node is removed
+		if (position === 0) {
+			this.head = this.head.next;
+
+		// 3rd use-case: any other node is removed
+		} else {
+			// iterate to find position
+			while (count < position) {
+				beforeNodeToDelete = currentNode;
+				currentNode = currentNode.next;
+				count++;
+			}
+
+			beforeNodeToDelete.next = currentNode.next;
+		}		
+		
 		this._length--;
-
-		return deletedNode;
-	}
-	
-	// 3rd use-case: any other node is removed
-	while (count < position) {
-		beforeNodeToDelete = currentNode;
-		nodeToDelete = currentNode.next;
-		currentNode = currentNode.next;
-		count++;
-	}
-
-	beforeNodeToDelete.next = nodeToDelete.next;
-	deletedNode = nodeToDelete;
-	nodeToDelete = null;
-	this._length--;
-
-	return deletedNode;
+		return currentNode.data;
 	}
 };
 
@@ -111,7 +101,7 @@ test.add(3);
 test.add(4);
 test.add(5);
 console.log(test._length, JSON.stringify(test));
-test.remove(4);
-test.remove(2);
-test.remove(1);
+console.log(test.remove(4));
+console.log(test.remove(2));
+console.log(test.remove(0));
 console.log(test._length, JSON.stringify(test));
