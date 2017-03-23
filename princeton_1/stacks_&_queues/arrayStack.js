@@ -1,4 +1,4 @@
-// Array-based implementation of a stack.
+// Dynamically-resizing array-based implementation of a stack.
 
 var protoStack = {
 	isEmpty: function() {
