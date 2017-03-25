@@ -174,6 +174,6 @@ console.log('Mixed unshift/push to capacity: ', JSON.stringify(test, null, 2));
 for (i = 4; i < 9; i++) {
 	i % 2 === 0 ? test.unshift(i) : test.push(i);
 }
-console.log('Mixed unshift/push to two post-resize events: ', JSON.stringify(test, null, 2));
+console.log('Mixed unshift/push to three post-resize events: ', JSON.stringify(test, null, 2));
 console.log('peekFront: ', test.peekFront());
 console.log('peekRear: ', test.peekRear());
