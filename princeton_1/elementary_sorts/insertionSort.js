@@ -5,6 +5,8 @@ function insertionSort(arr) {
 				var swap = arr[j-1];
 				arr[j-1] = arr[j];
 				arr[j] = swap;
+			} else {
+				break;
 			}
 		}
 	}
