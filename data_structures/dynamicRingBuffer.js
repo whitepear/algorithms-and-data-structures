@@ -114,7 +114,7 @@ var protoRingBuffer = {
 
 function factoryRingBuffer() {
 	var ringBuffer = Object.create(protoRingBuffer);
-	ringBuffer.storage = [];
+	ringBuffer.storage = new Array(4);
 	ringBuffer.n = 0; // number of user-items within storage array
 	ringBuffer.capacity = 4; // max number of items that can be stored in storage array
 	ringBuffer.front = 0; // index of item at start of storage array
