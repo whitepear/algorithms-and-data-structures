@@ -16,16 +16,16 @@ var protoBinarySearchTree = {
 	},
 	insert: function(val) {
 		// insert val into tree
-		this.root = put.call(this, this.root, val);
+		this.root = insert.call(this, this.root, val);
 
-		function put(currentNode, val) {
+		function insert(currentNode, val) {
 			// if empty tree, return a new node
 			if (currentNode === null) return factoryNode(val);
 			
 			if (val < currentNode.val) {
-				currentNode.left = put.call(this, currentNode.left, val);
+				currentNode.left = insert.call(this, currentNode.left, val);
 			} else if (val > currentNode.val) {
-				currentNode.right = put.call(this, currentNode.right, val);
+				currentNode.right = insert.call(this, currentNode.right, val);
 			} else {
 				currentNode.val = val;
 			}
@@ -36,10 +36,10 @@ var protoBinarySearchTree = {
 			return currentNode;
 		}
 	},	
-	min: function() {
-		// get min val in tree
+	min: function(rootNode) {
+		// get min val in tree/sub-tree
 		if (this.root !== null) {	
-			var currentNode = this.root;		
+			var currentNode = rootNode || this.root;		
 			while (currentNode.left !== null) {
 				currentNode = currentNode.left;
 			}
@@ -47,10 +47,10 @@ var protoBinarySearchTree = {
 		}
 		return null;
 	},
-	max: function() {
-		// get max val in tree
+	max: function(rootNode) {
+		// get max val in tree/sub-tree
 		if (this.root !== null) {
-			var currentNode = this.root;
+			var currentNode = rootNode || this.root;
 			while (currentNode.right !== null) {
 				currentNode = currentNode.right;
 			}
@@ -60,18 +60,18 @@ var protoBinarySearchTree = {
 	},
 	floor: function(val) {
 		// find the largest val <= to a given val
-		var floorNode = findFloor(this.root, val);
+		var floorNode = floor(this.root, val);
 		if (floorNode === null) return null;
 		return floorNode.val;
 		
-		function findFloor(x, val) {
+		function floor(x, val) {
 			if (x === null) return null;
 
 			if (val === x.val) return x;
 
-			if (val < x.val) return findFloor(x.left, val);
+			if (val < x.val) return floor(x.left, val);
 
-			var t = findFloor(x.right, val);
+			var t = floor(x.right, val);
 			if (t !== null) return t;
 			else 						return x;
 		}
@@ -86,16 +86,16 @@ var protoBinarySearchTree = {
 	},
 	rank: function(val) {
 		// get number of nodes less than val
-		return findRank.call(this, val, this.root);
+		return rank.call(this, val, this.root);
 
-		function findRank(val, currentNode) {
+		function rank(val, currentNode) {
 			if (currentNode === null) return 0;
 
-			if (val < currentNode.val) return findRank.call(this, val, currentNode.left);
+			if (val < currentNode.val) return rank.call(this, val, currentNode.left);
 			// if on right, add 1 for the root and add the 
 			// size of the left-subtree of the root, in addition to 
 			// the left-subtree size of the relevant node within the right-subtree
-			else if (val > currentNode.val) return 1 + this.size(currentNode.left) + findRank.call(this, val, currentNode.right);
+			else if (val > currentNode.val) return 1 + this.size(currentNode.left) + rank.call(this, val, currentNode.right);
 			// if val is equal to currentNode's val, return the number of 
 			// nodes in currentNode's left subtree
 			else return this.size(currentNode.left);
@@ -104,14 +104,35 @@ var protoBinarySearchTree = {
 	iterate: function() {
 		// produce queue of values within tree, sorted from min to max
 		var queue = factoryQueue();
-		inOrder(this.root, queue);
+		iterate(this.root, queue);
 		return queue;
 
-		function inOrder(currentNode, queue) {
+		function iterate(currentNode, queue) {
 			if (currentNode === null) return;
-			inOrder(currentNode.left, queue);
+			iterate(currentNode.left, queue);
 			queue.enqueue(currentNode.val);
-			inOrder(currentNode.right, queue);
+			iterate(currentNode.right, queue);
+		}
+	},
+	deleteMin: function() {
+		if (this.root !== null) {
+			this.root = deleteMin.call(this, this.root);
+			
+			function deleteMin(currentNode) {
+				if (currentNode.left === null) return currentNode.right;
+				currentNode.left = deleteMin.call(this, currentNode.left);
+				currentNode.count = 1 + this.size(currentNode.left) + this.size(currentNode.right);
+				return currentNode;
+			}
+		} else {
+			return null;
+		}
+	},
+	deleteNode: function(node) {
+		this.root = deleteNode.call(this, this.root, node);
+
+		function deleteNode(currentNode, nodeToDelete) {
+
 		}
 	}
 };
@@ -141,6 +162,7 @@ console.log('Empty min check: ', test.min());
 console.log('Empty max check: ', test.max());
 console.log('Empty floor check: ', test.floor(5));
 console.log('Empty rank check: ', test.rank(10));
+console.log('Empty deleteMin check: ', test.deleteMin());
 test.insert(5);
 test.insert(2);
 test.insert(14);
@@ -160,3 +182,6 @@ console.log('Floor check (14): ', test.floor(14));
 console.log('Rank check (12): ', test.rank(12));
 console.log('Rank check (5): ', test.rank(5));
 console.log('Size check: ', test.size());
+test.deleteMin();
+console.log('Post-delete size check: ', test.size());
+console.log('Post-delete min check: ', test.min());
