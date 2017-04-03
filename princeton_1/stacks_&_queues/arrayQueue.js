@@ -79,6 +79,8 @@ function factoryQueue() {
 	return queue;
 }
 
+module.exports = factoryQueue;
+
 
 // Tests
 var test = factoryQueue();

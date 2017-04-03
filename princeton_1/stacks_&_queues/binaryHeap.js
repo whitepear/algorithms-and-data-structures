@@ -1,3 +1,5 @@
+// Dynamically-resizing array implementation of a binary heap.
+
 // Zero-index within storage array is always left empty,
 // in order to simplify arithmetic required to navigate the heap.
 // Heap-indexing starts at 1.
