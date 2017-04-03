@@ -43,7 +43,7 @@ var protoBinarySearchTree = {
 			while (currentNode.left !== null) {
 				currentNode = currentNode.left;
 			}
-			return currentNode.val;
+			return currentNode;
 		}
 		return null;
 	},
@@ -54,7 +54,7 @@ var protoBinarySearchTree = {
 			while (currentNode.right !== null) {
 				currentNode = currentNode.right;
 			}
-			return currentNode.val;
+			return currentNode;
 		}
 		return null;
 	},
@@ -131,8 +131,32 @@ var protoBinarySearchTree = {
 	deleteNode: function(node) {
 		this.root = deleteNode.call(this, this.root, node);
 
-		function deleteNode(currentNode, nodeToDelete) {
+		function deleteNode(x, nodeToDelete) {
+			if (x === null) return null;
+			// search for node
+			if (nodeToDelete < x.val) x.left = deleteNode.call(this, x.left, nodeToDelete);
+			else if (nodeToDelete > x.val) x.right = deleteNode.call(this, x.right, nodeToDelete);
+			else {
+				// no right/left child
+				if (x.right === null) return x.left;
+				if (x.left  === null) return x.right;
+				
+				// replace with successor
+				var t = x;
+				x = this.min(t.right);
+				x.right = deleteMin.call(this, t.right);
+				x.left = t.left; 
+			}
+			// update subtree counts
+			x.count = this.size(x.left) + this.size(x.right) + 1;
+			return x;
+		}
 
+		function deleteMin(currentNode) {
+			if (currentNode.left === null) return currentNode.right;
+			currentNode.left = deleteMin.call(this, currentNode.left);
+			currentNode.count = 1 + this.size(currentNode.left) + this.size(currentNode.right);
+			return currentNode;
 		}
 	}
 };
@@ -163,6 +187,7 @@ console.log('Empty max check: ', test.max());
 console.log('Empty floor check: ', test.floor(5));
 console.log('Empty rank check: ', test.rank(10));
 console.log('Empty deleteMin check: ', test.deleteMin());
+console.log('Empty deleteNode check: ', test.deleteNode(3));
 test.insert(5);
 test.insert(2);
 test.insert(14);
@@ -183,5 +208,9 @@ console.log('Rank check (12): ', test.rank(12));
 console.log('Rank check (5): ', test.rank(5));
 console.log('Size check: ', test.size());
 test.deleteMin();
-console.log('Post-delete size check: ', test.size());
-console.log('Post-delete min check: ', test.min());
+console.log('Post-deleteMin size check: ', test.size());
+console.log('Post-deleteMin min check: ', test.min());
+test.deleteNode(8);
+console.log('Post-deleteNode (8) size check: ', test.size());
+console.log('Post-deleteNode (8) rank (12) check: ', test.rank(12));
+console.log('Post-deleteNode (8) check: ', JSON.stringify(test, null, 2));
