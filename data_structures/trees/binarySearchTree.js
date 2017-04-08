@@ -1,5 +1,5 @@
 'use strict';
-var factoryQueue = require('../princeton_1/stacks_&_queues/arrayQueue.js');
+var factoryQueue = require('../stacks_queues/arrayQueue.js');
 
 var protoBinarySearchTree = {
 	get: function(val) {
