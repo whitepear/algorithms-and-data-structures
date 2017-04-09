@@ -1,4 +1,4 @@
-// hashing function that produces integers based on input.
+// hashing function that produces hash code integers based on input.
 // hashing process differs based on input type.
 // strings, numbers and booleans are supported.
 
