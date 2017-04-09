@@ -86,7 +86,9 @@ var protoRingBuffer = {
 		return this.storage[this.front];
 	},
 	peekRear: function() {
-		return this.storage[this.rear - 1];
+		var rearPosition = this.rear - 1;
+		if (rearPosition < 0) rearPosition = this.storage.length - 1;
+		return this.storage[rearPosition];
 	},
 	resize: function(resizeAction) {
 		// store capacity for use within for loop below
