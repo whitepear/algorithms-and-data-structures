@@ -1,4 +1,7 @@
+// For simplicity's sake, this implementation does not
+// use dynamically-resizing arrays.
 var hash = require('../../algorithms/hashingFunction.js');
+
 
 var protoHashTable = {
 	hash: function(key) {
