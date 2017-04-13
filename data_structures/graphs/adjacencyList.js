@@ -17,8 +17,7 @@ var protoAdjacencyList = {
 				this.storage[vertex] = factoryNode(vertexToBeAdded);
 			}
 		}
-	},
-
+	}
 };
 
 function factoryNode(vertex, next) {
