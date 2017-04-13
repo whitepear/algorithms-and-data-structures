@@ -9,12 +9,12 @@ var protoAdjacencyList = {
 
 		function addEdge(vertex, vertexToBeAdded) {
 			// check if a linked-list exists at vertex-index
-			if (this.storage[vertex] !== undefined) {
+			if (this.adjEdges[vertex] !== undefined) {
 				// a list exists, insert at start
-				this.storage[vertex] = factoryNode(vertexToBeAdded, this.storage[vertex]);
+				this.adjEdges[vertex] = factoryNode(vertexToBeAdded, this.adjEdges[vertex]);
 			} else {
 				// no list exists, insert a node
-				this.storage[vertex] = factoryNode(vertexToBeAdded);
+				this.adjEdges[vertex] = factoryNode(vertexToBeAdded);
 			}
 		}
 	}
@@ -30,17 +30,28 @@ function factoryNode(vertex, next) {
 function factoryAdjacencyList(V) {
 	var adjacencyList = Object.create(protoAdjacencyList);
 	adjacencyList.V = V; // number of vertices
-	adjacencyList.storage = new Array(V);	// array of linked-lists
+	adjacencyList.adjEdges = new Array(V);	// array of linked-lists
 	return adjacencyList;
 }
 
+// Exported adjacency list
+var foo = factoryAdjacencyList(10);
+foo.addEdge(1, 2);
+foo.addEdge(1, 3);
+foo.addEdge(1, 5);
+foo.addEdge(1, 8);
+foo.addEdge(2, 6);
+foo.addEdge(2, 10);
+foo.addEdge(3, 6);
+foo.addEdge(4, 7);
+module.exports = foo;
 
 // Tests
-var test = factoryAdjacencyList(50);
-console.log('Empty test: ', test);
-test.addEdge(5, 10);
-test.addEdge(5, 6);
-test.addEdge(5, 12);
-test.addEdge(5, 30);
-console.log('Test post-insert: ', test);
-console.log('Storage at index 5: ', JSON.stringify(test.storage[5], null, 2));
+// var test = factoryAdjacencyList(50);
+// console.log('Empty test: ', test);
+// test.addEdge(5, 10);
+// test.addEdge(5, 6);
+// test.addEdge(5, 12);
+// test.addEdge(5, 30);
+// console.log('Test post-insert: ', test);
+// console.log('adjEdges at index 5: ', JSON.stringify(test.adjEdges[5], null, 2));

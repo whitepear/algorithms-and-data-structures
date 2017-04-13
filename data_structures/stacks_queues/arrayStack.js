@@ -57,35 +57,38 @@ function factoryStack() {
 	return stack;
 }
 
+module.exports = factoryStack;
 
-var test = factoryStack();
-for (var i = 0; i < 5; i++) {
-	test.push(i);
-}
-console.log(JSON.stringify(test, null, 2));
-for (i; i < 10; i++) {
-	test.push(i);
-}
-console.log(JSON.stringify(test, null, 2));
-for (i; i < 15; i++) {
-	test.push(i);
-}
-console.log(JSON.stringify(test, null, 2));
-for (i; i < 30; i++) {
-	test.push(i);
-}
-console.log(JSON.stringify(test, null, 2));
-console.log(test.pop());
-console.log(JSON.stringify(test, null, 2));
-console.log(test.peek());
-for (i = 0; i < 22; i++) {
-	test.pop();
-}
-console.log(JSON.stringify(test, null, 2));
-console.log(test.isEmpty());
-for (i = 0; i < 18; i++) {
-	test.pop();
-}
-console.log(test.isEmpty());
-console.log(test.pop());
-console.log(JSON.stringify(test, null, 2));
+
+// Tests
+// var test = factoryStack();
+// for (var i = 0; i < 5; i++) {
+// 	test.push(i);
+// }
+// console.log(JSON.stringify(test, null, 2));
+// for (i; i < 10; i++) {
+// 	test.push(i);
+// }
+// console.log(JSON.stringify(test, null, 2));
+// for (i; i < 15; i++) {
+// 	test.push(i);
+// }
+// console.log(JSON.stringify(test, null, 2));
+// for (i; i < 30; i++) {
+// 	test.push(i);
+// }
+// console.log(JSON.stringify(test, null, 2));
+// console.log(test.pop());
+// console.log(JSON.stringify(test, null, 2));
+// console.log(test.peek());
+// for (i = 0; i < 22; i++) {
+// 	test.pop();
+// }
+// console.log(JSON.stringify(test, null, 2));
+// console.log(test.isEmpty());
+// for (i = 0; i < 18; i++) {
+// 	test.pop();
+// }
+// console.log(test.isEmpty());
+// console.log(test.pop());
+// console.log(JSON.stringify(test, null, 2));
