@@ -35,21 +35,18 @@ function factoryDepthFirstSearch(graph, sourceVertex) {
 	function depthFirstSearch(graph, sourceVertex) {
 		dfsObj.marked[sourceVertex] = true;
 		
-		var currentVertex = graph.adjEdges[sourceVertex];
-		// if a linked-list is present at the vertex index, loop through it
-		if (currentVertex !== undefined) {
-
-			while (currentVertex !== null) {
-				// if the currentVertex is unmarked, recursively DFS it
-				// and set the edge to it as sourceVertex
-				if (!dfsObj.marked[currentVertex.vertex]) {
-					depthFirstSearch(graph, currentVertex.vertex);
-					dfsObj.edgeTo[currentVertex.vertex] = sourceVertex;
-				}
-				// iterate through the linked list
-				currentVertex = currentVertex.next;
+		var currentVertex = graph.adjEdges[sourceVertex].head;
+		// if the linked-list isn't empty, loop through it
+		while (currentVertex !== null) {
+			// if the currentVertex is unmarked, recursively DFS it
+			// and set the edge to it as sourceVertex
+			if (!dfsObj.marked[currentVertex.data]) {
+				depthFirstSearch(graph, currentVertex.data);
+				dfsObj.edgeTo[currentVertex.data] = sourceVertex;
 			}
-		}
+			// iterate through the linked list
+			currentVertex = currentVertex.next;
+		}		
 	}
 }
 
