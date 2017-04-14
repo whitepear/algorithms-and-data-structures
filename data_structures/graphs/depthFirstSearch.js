@@ -59,3 +59,8 @@ console.log('Valid hasPathTo test: ', test.hasPathTo(2));
 console.log('Missed hasPathTo test: ', test.hasPathTo(9));
 console.log('Valid pathTo test: ', test.pathTo(10));
 console.log('Missed pathTo test: ', test.pathTo(0));
+
+var test2 = factoryDepthFirstSearch(exampleGraph, 0);
+console.log('Test2 on initialization: ', test2);
+console.log('Test2 hasPathTo check: ', test2.hasPathTo(9));
+console.log('Test2 pathTo check: ', test2.pathTo(10));

@@ -51,7 +51,7 @@ var protoStack = {
 function factoryStack() {
 	// initialise and link object
 	var stack = Object.create(protoStack);
-	stack.storage = []; // array for storing values
+	stack.storage = new Array(4); // array for storing values
 	stack.length = 0; // current highest index within storage that holds a user value
 	stack.maxLength = 4; // capacity of storage array
 	return stack;

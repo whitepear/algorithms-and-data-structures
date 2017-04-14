@@ -83,34 +83,34 @@ module.exports = factoryQueue;
 
 
 // Tests
-var test = factoryQueue();
-console.log('Test on creation: ', JSON.stringify(test, null, 2));
-console.log('Is empty check: ', test.isEmpty());
-console.log('Empty dequeue check: ', test.dequeue());
-for (var i = 0; i < 4; i++) {
-	test.enqueue(i);
-}
-console.log('Test at capacity: ', JSON.stringify(test, null, 2));
-console.log('First dequeue: ', test.dequeue());
-console.log('Peek: ', test.peek());
-console.log('Second dequeue: ', test.dequeue());
-test.enqueue(i++);
-test.enqueue(i++);
-console.log('Enqueue two more values: ', JSON.stringify(test, null, 2));
-test.enqueue(i++);
-console.log('Post-resize enqueue: ', JSON.stringify(test, null, 2));
-console.log('Post-resize dequeue: ', test.dequeue());
-for (i; i < 11; i++) {
-	test.enqueue(i);
-}
-console.log('Test at capacity: ', JSON.stringify(test, null, 2));
-test.enqueue(i++);
-console.log('Post-second resize enqueue: ', JSON.stringify(test, null, 2));
-for (i = 0; i < 8; i++) {
-	test.dequeue();
-}
-console.log('Post-downsize: ', JSON.stringify(test, null, 2));
-for (i = 0; i < 6; i++) {
-	test.enqueue(i);
-}
-console.log('Post-resize: ', JSON.stringify(test, null, 2));
+// var test = factoryQueue();
+// console.log('Test on creation: ', JSON.stringify(test, null, 2));
+// console.log('Is empty check: ', test.isEmpty());
+// console.log('Empty dequeue check: ', test.dequeue());
+// for (var i = 0; i < 4; i++) {
+// 	test.enqueue(i);
+// }
+// console.log('Test at capacity: ', JSON.stringify(test, null, 2));
+// console.log('First dequeue: ', test.dequeue());
+// console.log('Peek: ', test.peek());
+// console.log('Second dequeue: ', test.dequeue());
+// test.enqueue(i++);
+// test.enqueue(i++);
+// console.log('Enqueue two more values: ', JSON.stringify(test, null, 2));
+// test.enqueue(i++);
+// console.log('Post-resize enqueue: ', JSON.stringify(test, null, 2));
+// console.log('Post-resize dequeue: ', test.dequeue());
+// for (i; i < 11; i++) {
+// 	test.enqueue(i);
+// }
+// console.log('Test at capacity: ', JSON.stringify(test, null, 2));
+// test.enqueue(i++);
+// console.log('Post-second resize enqueue: ', JSON.stringify(test, null, 2));
+// for (i = 0; i < 8; i++) {
+// 	test.dequeue();
+// }
+// console.log('Post-downsize: ', JSON.stringify(test, null, 2));
+// for (i = 0; i < 6; i++) {
+// 	test.enqueue(i);
+// }
+// console.log('Post-resize: ', JSON.stringify(test, null, 2));
