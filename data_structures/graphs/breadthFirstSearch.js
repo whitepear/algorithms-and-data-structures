@@ -47,21 +47,20 @@ function factoryBreadthFirstSearch(graph, sourceVertex) {
 			var currentVertex = q.dequeue();
 			
 			// iterate through currentVertex's linked-list of
-			// adjacent vertices, provided that it exists
-			var adjVertex = graph.adjEdges[currentVertex];
-			if (adjVertex !== undefined) {
-				while (adjVertex !== null) {
-					// if the adjacentVertex has not been visited
-					if (!bfsObj.marked[adjVertex.vertex]) {
-						// put it on the queue, mark it as visited, set its edgeTo
-						q.enqueue(adjVertex.vertex);
-						bfsObj.marked[adjVertex.vertex] = true;
-						bfsObj.edgeTo[adjVertex.vertex] = currentVertex;						
-					}
-					// increment to next neighbour in chain
-					adjVertex = adjVertex.next;
+			// adjacent vertices, provided that it's not empty
+			var adjVertex = graph.adjEdges[currentVertex].head;
+			
+			while (adjVertex !== null) {
+				// if the adjacentVertex has not been visited
+				if (!bfsObj.marked[adjVertex.data]) {
+					// put it on the queue, mark it as visited, set its edgeTo
+					q.enqueue(adjVertex.data);
+					bfsObj.marked[adjVertex.data] = true;
+					bfsObj.edgeTo[adjVertex.data] = currentVertex;						
 				}
-			}
+				// increment to next neighbour in chain
+				adjVertex = adjVertex.next;
+			}			
 		}
 	}
 }
