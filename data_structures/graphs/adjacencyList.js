@@ -1,41 +1,28 @@
 // Adjacency-list graph, each index (vertex) uses
 // a linked-list to list adjacent vertices.
+var factoryLinkedList = require('../linkedList.js');
 
 var protoAdjacencyList = {
 	addEdge: function(v, w) {
 		// add edges for vertices v and w
-		addEdge.call(this, v, w);
-		addEdge.call(this, w, v);
-
-		function addEdge(vertex, vertexToBeAdded) {
-			// check if a linked-list exists at vertex-index
-			if (this.adjEdges[vertex] !== undefined) {
-				// a list exists, insert at start
-				this.adjEdges[vertex] = factoryNode(vertexToBeAdded, this.adjEdges[vertex]);
-			} else {
-				// no list exists, insert a node
-				this.adjEdges[vertex] = factoryNode(vertexToBeAdded);
-			}
-		}
+		this.adjEdges[v].add(w);
+		this.adjEdges[w].add(v);		
 	}
 };
-
-function factoryNode(vertex, next) {
-	return {
-		vertex: vertex,
-		next: next || null
-	};
-}
 
 function factoryAdjacencyList(V) {
 	var adjacencyList = Object.create(protoAdjacencyList);
 	adjacencyList.V = V; // number of vertices
-	adjacencyList.adjEdges = new Array(V);	// array of linked-lists
+	adjacencyList.adjEdges = new Array(V); // array of linked-lists
+	// populate adjEdges with linked-lists
+	for (var i = 0; i < V; i++) {
+		adjacencyList.adjEdges[i] = factoryLinkedList();
+	}
 	return adjacencyList;
 }
 
 // Exported adjacency list
-var foo = factoryAdjacencyList(10);
+var foo = factoryAdjacencyList(11);
 foo.addEdge(1, 2);
 foo.addEdge(1, 3);
 foo.addEdge(1, 5);

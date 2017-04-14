@@ -94,14 +94,17 @@ function factorySinglyList() {
 	return singlyList;
 }
 
-var test = factorySinglyList();
-test.add(1);
-test.add(2);
-test.add(3);
-test.add(4);
-test.add(5);
-console.log(test._length, JSON.stringify(test));
-console.log(test.remove(4));
-console.log(test.remove(2));
-console.log(test.remove(0));
-console.log(test._length, JSON.stringify(test));
+module.exports = factorySinglyList;
+
+// Tests
+// var test = factorySinglyList();
+// test.add(1);
+// test.add(2);
+// test.add(3);
+// test.add(4);
+// test.add(5);
+// console.log(test._length, JSON.stringify(test));
+// console.log(test.remove(4));
+// console.log(test.remove(2));
+// console.log(test.remove(0));
+// console.log(test._length, JSON.stringify(test));
