@@ -25,6 +25,7 @@ function factoryConnectedComponent(graph) {
 
 	return connectedComponent;
 	
+	
 	// modified DFS to identify components
 	function depthFirstSearch(graph, sourceVertex) {
 		// mark sourceVertex, set its connectedComponent ID
