@@ -48,7 +48,7 @@ function factoryBreadthFirstSearch(graph, sourceVertex) {
 			
 			// iterate through currentVertex's linked-list of
 			// adjacent vertices, provided that it's not empty
-			var adjVertex = graph.adjEdges[currentVertex].head;
+			var adjVertex = graph.adj[currentVertex].head;
 			
 			while (adjVertex !== null) {
 				// if the adjacentVertex has not been visited

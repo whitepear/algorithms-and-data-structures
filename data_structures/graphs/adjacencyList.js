@@ -5,18 +5,18 @@ var factoryLinkedList = require('../linkedList.js');
 var protoAdjacencyList = {
 	addEdge: function(v, w) {
 		// add edges for vertices v and w
-		this.adjEdges[v].add(w);
-		this.adjEdges[w].add(v);		
+		this.adj[v].add(w);
+		this.adj[w].add(v);		
 	}
 };
 
 function factoryAdjacencyList(V) {
 	var adjacencyList = Object.create(protoAdjacencyList);
 	adjacencyList.V = V; // number of vertices
-	adjacencyList.adjEdges = new Array(V); // array of linked-lists
-	// populate adjEdges with linked-lists
+	adjacencyList.adj = new Array(V); // array of linked-lists
+	// populate adj with linked-lists
 	for (var i = 0; i < V; i++) {
-		adjacencyList.adjEdges[i] = factoryLinkedList();
+		adjacencyList.adj[i] = factoryLinkedList();
 	}
 	return adjacencyList;
 }
@@ -41,4 +41,4 @@ module.exports = foo;
 // test.addEdge(5, 12);
 // test.addEdge(5, 30);
 // console.log('Test post-insert: ', test);
-// console.log('adjEdges at index 5: ', JSON.stringify(test.adjEdges[5], null, 2));
+// console.log('adj at index 5: ', JSON.stringify(test.adj[5], null, 2));

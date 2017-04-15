@@ -35,7 +35,7 @@ function factoryDepthFirstSearch(graph, sourceVertex) {
 	function depthFirstSearch(graph, sourceVertex) {
 		dfsObj.marked[sourceVertex] = true;
 		
-		var currentVertex = graph.adjEdges[sourceVertex].head;
+		var currentVertex = graph.adj[sourceVertex].head;
 		// if the linked-list isn't empty, loop through it
 		while (currentVertex !== null) {
 			// if the currentVertex is unmarked, recursively DFS it
