@@ -21,15 +21,18 @@ function factoryDigraph(V) {
 }
 
 // Exported adjacency list
-var foo = factoryDigraph(11);
-foo.addEdge(1, 2);
-foo.addEdge(1, 3);
-foo.addEdge(1, 5);
-foo.addEdge(1, 8);
-foo.addEdge(2, 6);
-foo.addEdge(2, 10);
-foo.addEdge(3, 6);
-foo.addEdge(4, 7);
+var foo = factoryDigraph(7);
+foo.addEdge(0,5);
+foo.addEdge(0,2);
+foo.addEdge(0,1);
+foo.addEdge(3,6);
+foo.addEdge(3,5);
+foo.addEdge(3,4);
+foo.addEdge(5,2);
+foo.addEdge(6,4);
+foo.addEdge(6,0);
+foo.addEdge(3,2);
+foo.addEdge(1,4);
 module.exports = foo;
 
 // Tests
