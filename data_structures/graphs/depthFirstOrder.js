@@ -1,7 +1,7 @@
 // Graph-processing algorithm that can be used
 // to implement a topological sort on directed acyclic graphs.
 var factoryStack = require('../stacks_queues/arrayStack.js');
-var exampleDigraph = require('./digraph.js');
+var exampleDigraph = require('./digraph.js').dag;
 
 
 function factoryDFO(digraph) {
@@ -40,9 +40,11 @@ function factoryDFO(digraph) {
 	}
 }
 
+module.exports = factoryDFO;
+
 
 // Tests
-var test = factoryDFO(exampleDigraph);
-console.log('Test on initialization: ', JSON.stringify(test, null, 2));
-console.log('Test\'s reversePost stack: ', test.reversePost);
-console.log('Test\'s marked array: ', test.marked);
+// var test = factoryDFO(exampleDigraph);
+// console.log('Test on initialization: ', JSON.stringify(test, null, 2));
+// console.log('Test\'s reversePost stack: ', test.reversePost);
+// console.log('Test\'s marked array: ', test.marked);
