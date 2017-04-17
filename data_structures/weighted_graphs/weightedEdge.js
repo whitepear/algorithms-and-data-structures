@@ -5,7 +5,7 @@ var protoEdge = {
 		return this.v;
 	},
 	other: function(vertex) {
-		if (vertex === this.v) return w;
+		if (vertex === this.v) return this.w;
 		else return v;
 	},
 	compareTo: function(otherEdge) {
