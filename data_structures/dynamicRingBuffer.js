@@ -124,58 +124,60 @@ function factoryRingBuffer() {
 	return ringBuffer;
 }
 
+module.exports = factoryRingBuffer;
+
 
 // Tests
-var test = factoryRingBuffer();
-console.log('Empty test: ', JSON.stringify(test, null, 2));
-console.log('isEmpty check: ', test.isEmpty());
-console.log('Empty pop check: ', test.pop());
-console.log('Empty shift check: ', test.shift());
-for (var i = 0; i < 4; i++) {
-	console.log('Unshift: ', test.unshift(i));
-}
-console.log('To capacity unshifting: ', JSON.stringify(test, null, 2));
-for (i; i < 8; i++) {
-	test.unshift(i);
-}
-console.log('Post-resize unshifting: ', JSON.stringify(test, null, 2));
-console.log('Shift check: ', test.shift());
-console.log('Pop check: ', test.pop());
-console.log('Post shift/pop check: ', JSON.stringify(test, null, 2));
-for (i = 0; i < 4; i++) {
-	i % 2 === 0 ? test.shift() : test.pop();
-}
-console.log('Post downsize: ', JSON.stringify(test, null, 2));
-test.shift();
-test.pop();
-console.log('Emptied test: ', JSON.stringify(test, null, 2));
-console.log('isEmpty check: ', test.isEmpty());
-for (i = 0; i < 4; i++) {
-	console.log('Push: ', test.push(i));
-}
-console.log('To capacity pushing: ', JSON.stringify(test, null, 2));
-for (i; i < 8; i++) {
-	test.push(i);
-}
-console.log('Post-resize pushing: ', JSON.stringify(test, null, 2));
-console.log('Shift check: ', test.shift());
-console.log('Pop check: ', test.pop());
-console.log('Post shift/pop check: ', JSON.stringify(test, null, 2));
-for (i = 0; i < 4; i++) {
-	i % 2 === 0 ? test.shift() : test.pop();
-}
-console.log('Post downsize: ', JSON.stringify(test, null, 2));
-test.shift();
-test.pop();
-console.log('Emptied test: ', JSON.stringify(test, null, 2));
-console.log('isEmpty check: ', test.isEmpty());
-for (i = 0; i < 4; i++) {
-	i % 2 === 0 ? test.unshift(i) : test.push(i);
-}
-console.log('Mixed unshift/push to capacity: ', JSON.stringify(test, null, 2));
-for (i = 4; i < 9; i++) {
-	i % 2 === 0 ? test.unshift(i) : test.push(i);
-}
-console.log('Mixed unshift/push to three post-resize events: ', JSON.stringify(test, null, 2));
-console.log('peekFront: ', test.peekFront());
-console.log('peekRear: ', test.peekRear());
+// var test = factoryRingBuffer();
+// console.log('Empty test: ', JSON.stringify(test, null, 2));
+// console.log('isEmpty check: ', test.isEmpty());
+// console.log('Empty pop check: ', test.pop());
+// console.log('Empty shift check: ', test.shift());
+// for (var i = 0; i < 4; i++) {
+// 	console.log('Unshift: ', test.unshift(i));
+// }
+// console.log('To capacity unshifting: ', JSON.stringify(test, null, 2));
+// for (i; i < 8; i++) {
+// 	test.unshift(i);
+// }
+// console.log('Post-resize unshifting: ', JSON.stringify(test, null, 2));
+// console.log('Shift check: ', test.shift());
+// console.log('Pop check: ', test.pop());
+// console.log('Post shift/pop check: ', JSON.stringify(test, null, 2));
+// for (i = 0; i < 4; i++) {
+// 	i % 2 === 0 ? test.shift() : test.pop();
+// }
+// console.log('Post downsize: ', JSON.stringify(test, null, 2));
+// test.shift();
+// test.pop();
+// console.log('Emptied test: ', JSON.stringify(test, null, 2));
+// console.log('isEmpty check: ', test.isEmpty());
+// for (i = 0; i < 4; i++) {
+// 	console.log('Push: ', test.push(i));
+// }
+// console.log('To capacity pushing: ', JSON.stringify(test, null, 2));
+// for (i; i < 8; i++) {
+// 	test.push(i);
+// }
+// console.log('Post-resize pushing: ', JSON.stringify(test, null, 2));
+// console.log('Shift check: ', test.shift());
+// console.log('Pop check: ', test.pop());
+// console.log('Post shift/pop check: ', JSON.stringify(test, null, 2));
+// for (i = 0; i < 4; i++) {
+// 	i % 2 === 0 ? test.shift() : test.pop();
+// }
+// console.log('Post downsize: ', JSON.stringify(test, null, 2));
+// test.shift();
+// test.pop();
+// console.log('Emptied test: ', JSON.stringify(test, null, 2));
+// console.log('isEmpty check: ', test.isEmpty());
+// for (i = 0; i < 4; i++) {
+// 	i % 2 === 0 ? test.unshift(i) : test.push(i);
+// }
+// console.log('Mixed unshift/push to capacity: ', JSON.stringify(test, null, 2));
+// for (i = 4; i < 9; i++) {
+// 	i % 2 === 0 ? test.unshift(i) : test.push(i);
+// }
+// console.log('Mixed unshift/push to three post-resize events: ', JSON.stringify(test, null, 2));
+// console.log('peekFront: ', test.peekFront());
+// console.log('peekRear: ', test.peekRear());

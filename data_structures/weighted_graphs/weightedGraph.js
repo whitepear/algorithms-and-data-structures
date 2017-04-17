@@ -28,7 +28,7 @@ function factoryGraph(V) {
 
 // Tests
 var test = factoryGraph(8);
-console.log('Test after initialization: ', test);
+// console.log('Test after initialization: ', test);
 test.addEdge(factoryWeightedEdge(0,2,26));
 test.addEdge(factoryWeightedEdge(0,4,38));
 test.addEdge(factoryWeightedEdge(0,7,16));
@@ -45,6 +45,6 @@ test.addEdge(factoryWeightedEdge(5,7,28));
 test.addEdge(factoryWeightedEdge(6,0,58));
 test.addEdge(factoryWeightedEdge(6,2,40));
 test.addEdge(factoryWeightedEdge(6,4,93));
-console.log('Test after insertions: ', test);
-console.log('Edges at vertex 0: ', JSON.stringify(test.adj[0].head, null, 2));
+// console.log('Test after insertions: ', test);
+// console.log('Edges at vertex 0: ', JSON.stringify(test.adj[0].head, null, 2));
 module.exports = test;
