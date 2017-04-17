@@ -3,7 +3,7 @@
 function quickFind(n) {
 	// create object to be returned
 	var quickFindObj = {
-		ids = []
+		ids: []
 	};
 	
 	// fill id array with values equal to indices

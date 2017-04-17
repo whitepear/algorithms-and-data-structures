@@ -3,8 +3,8 @@
 function quickUnionWeighted(n) {
 	// create object to be returned
 	var quickUnionObj = {
-		ids = [],
-		size = []
+		ids: [],
+		size: []
 	};
 
 	// fill id array with values equal to indices
@@ -49,3 +49,5 @@ function quickUnionWeighted(n) {
 	
 	return quickUnionObj;
 }
+
+module.exports = quickUnionWeighted;

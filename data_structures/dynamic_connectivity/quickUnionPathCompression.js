@@ -6,8 +6,8 @@
 function quickUnionCompress(n) {
 	// create object to be returned
 	var quickUnionObj = {
-		ids = [],
-		size = []
+		ids: [],
+		size: []
 	};
 
 	// fill id array with values equal to indices
@@ -54,3 +54,5 @@ function quickUnionCompress(n) {
 	
 	return quickUnionObj;
 }
+
+module.exports = quickUnionCompress;

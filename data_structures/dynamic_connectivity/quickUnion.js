@@ -3,7 +3,7 @@
 function quickUnion(n) {
 	// create object to be returned
 	var quickUnionObj = {
-		ids = []
+		ids: []
 	};
 	
 	// fill id array with values equal to indices
