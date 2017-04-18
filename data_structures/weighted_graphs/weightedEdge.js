@@ -6,7 +6,7 @@ var protoEdge = {
 	},
 	other: function(vertex) {
 		if (vertex === this.v) return this.w;
-		else return v;
+		else return this.v;
 	},
 	compareTo: function(otherEdge) {
 		if 			(this.weight < otherEdge.weight) return -1;
