@@ -12,8 +12,10 @@ var factoryMinHeap = require('./minHeap.js');
 
 function factoryDijkstra(weightedDigraph, sourceVertex) {
 	var pq = factoryMinHeap(); // priority queue ordered by distance from sourceVertex
-	var dist = new Array(weightedDigraph.V); // dist[v] gives distance from sourceVertex to v
-		
+	var dist = new Array(weightedDigraph.V); // dist[v] gives distance of shortest known path from sourceVertex to v
+	var edgeTo = new Array(weightedDigraph.V); // edgeTo[v] gives previous vertex in path from sourceVertex to v
+	var marked = new Array(weightedDigraph.V); // marked tracks visited vertices (i.e. those on tree)
+
 	// set default distance from sourceVertex to all other vertices as Infinity
 	for (var v = 0; v < weightedDigraph.V; v++) {
 		dist[v] = Infinity;
@@ -30,9 +32,9 @@ function factoryDijkstra(weightedDigraph, sourceVertex) {
 		var currentVertex = minVertexObj.vertex; // get vertex number
 		var distance = minVertexObj.distance; // get distance of vertex from source
 		
-		// if the vertex has never been removed from the heap before,
-		// its distance property-value will be less than its entry in dist[] (Infinity)
-		if (distance < dist[currentVertex]) {
+		// if the vertex has not yet been visited, process it
+		if (!marked[currentVertex]) {
+			marked[currentVertex] = true;
 			dist[currentVertex] = distance; // set dist for the vertex
 			
 			// iterate over its adjacent edges, which are stored as a   
@@ -42,16 +44,21 @@ function factoryDijkstra(weightedDigraph, sourceVertex) {
 				var currentEdge = currentEdgeLink.data; // extract edge data from the link entry
 				var otherVertex = currentEdge.to(); // get the vertex that currentVertex is connected to via currentEdge
 				
-				// check if the path composed of (source to currentVertex + the currentEdge)
-				// is shorter than the currently-recorded path to otherVertex
-				if ( (dist[currentVertex] + currentEdge.weight) < dist[otherVertex] ) {
-					// if so, insert this vertex onto to the pq for later processing,
-					// with the updated shortest known path-distance we've just discovered
+				// check if otherVertex has already been processed
+				if (!marked[otherVertex]) {
+					// if not, insert this vertex into to the pq for later processing,
+					// with the current path distance
 					pq.insert({
 						vertex: otherVertex,
-						distance: (dist[currentVertex] + currentEdge.weight)
-					});										
-					
+						distance: (distance + currentEdge.weight)
+					});
+
+					// if a new shortest path to otherVertex has been discovered,
+					// set currentVertex as otherVertex's prev vertex
+					if ( (distance + currentEdge.weight) < dist[otherVertex] ) {
+						edgeTo[otherVertex] = currentVertex;
+				   	dist[otherVertex] = (distance + currentEdge.weight);
+					}			
 				}
 
 				currentEdgeLink = currentEdgeLink.next; // increment to the next link in the list
@@ -60,7 +67,8 @@ function factoryDijkstra(weightedDigraph, sourceVertex) {
 	}
 
 	return {
-		dist: dist
+		dist: dist,
+		edgeTo: edgeTo
 	};
 }
 
