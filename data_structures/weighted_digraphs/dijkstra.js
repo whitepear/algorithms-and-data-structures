@@ -46,18 +46,17 @@ function factoryDijkstra(weightedDigraph, sourceVertex) {
 				
 				// check if otherVertex has already been processed
 				if (!marked[otherVertex]) {
-					// if not, insert this vertex into to the pq for later processing,
-					// with the current path distance
-					pq.insert({
-						vertex: otherVertex,
-						distance: (distance + currentEdge.weight)
-					});
-
 					// if a new shortest path to otherVertex has been discovered,
-					// set currentVertex as otherVertex's prev vertex
+					// set currentVertex as otherVertex's prev vertex, and add
+					// otherVertex to the priority queue for future processing
 					if ( (distance + currentEdge.weight) < dist[otherVertex] ) {
 						edgeTo[otherVertex] = currentVertex;
 				   	dist[otherVertex] = (distance + currentEdge.weight);
+
+				   	pq.insert({
+							vertex: otherVertex,
+							distance: (distance + currentEdge.weight)
+						});
 					}			
 				}
 
