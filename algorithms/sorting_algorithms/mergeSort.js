@@ -1,3 +1,5 @@
+var insertionSort = require('./insertionSort.js');
+
 function merge(arr, auxArr, lo, mid, hi) {
 	// pre-condition: arr[lo..mid] is sorted
 	// pre-condition: arr[mid+1..hi] is sorted
@@ -19,11 +21,16 @@ function merge(arr, auxArr, lo, mid, hi) {
 }
 
 function mergeSort(arr, auxArr, lo, hi) {
-	if (hi <= lo) return;
+	// when subarray is small, switch to insertion sort
+	if (hi <= lo + 8) {
+		insertionSort(arr, lo, hi);
+		return;
+	}
 	var mid = lo + Math.floor( (hi - lo) / 2 );
 	// sort each half and merge
 	mergeSort(arr, auxArr, lo, mid);
 	mergeSort(arr, auxArr, mid+1, hi);
+	if ( !(arr[mid+1] < arr[mid]) ) return; // don't merge if arrays are already sorted
 	merge(arr, auxArr, lo, mid, hi);
 }
 

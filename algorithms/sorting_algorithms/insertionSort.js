@@ -12,6 +12,8 @@ function insertionSort(arr) {
 	}
 }
 
-var nums = [34, 23, 12, 45, 9, 1, 24];
-insertionSort(nums);
-console.log(nums);
+module.exports = insertionSort;
+
+// var nums = [34, 23, 12, 45, 9, 1, 24];
+// insertionSort(nums);
+// console.log(nums);
