@@ -1,4 +1,5 @@
 var shuffle = require('./knuthShuffle.js');
+var insertionSort = require('./insertionSort.js');
 
 function quickSort(arr) {
 	// shuffle needed for performance guarantee
@@ -6,7 +7,11 @@ function quickSort(arr) {
 	sort(arr, 0, arr.length-1);
 	
 	function sort(arr, lo, hi) {
-		if (hi <= lo) return;
+		// switch to insertion sort for small subarrays
+		if (hi <= lo + 9) {
+			insertionSort(arr, lo, hi);
+			return;
+		}
 		var j = partition(arr, lo, hi);
 		sort(arr, lo, j-1);
 		sort(arr, j+1, hi);
