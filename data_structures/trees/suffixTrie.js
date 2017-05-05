@@ -8,6 +8,30 @@ var protoSuffix = {
 		return {
 			next: new Array(this.R)
 		}
+	},
+	followPath: function(str) {
+		// Follow path given by characters of str.
+		// Return node at end of path, or null if we fall off.
+
+		var currentNode = this.root;
+		for (var i = 0; i < str.length; i++) {
+			var currentChar = str.charCodeAt(i);
+			if (currentNode.next[currentChar] === undefined) {
+				return null;
+			}
+			currentNode = currentNode.next[currentChar];
+		}
+
+		return currentNode;
+	},
+	hasSubstring: function(str) {
+		// Return true iff str appears as a substring.
+		return this.followPath(str) !== null;
+	},
+	hasSuffix: function(str) {
+		// Return true iff str is a suffix.
+		var resultNode = this.followPath(str);
+		return (resultNode !== null && resultNode.next['$'.charCodeAt()] !== undefined);
 	}
 };
 
@@ -38,3 +62,9 @@ function factorySuffix(str) {
 
 // Tests
 var test = factorySuffix('abaaba');
+console.log('Valid followPath check (returns a node coerced to bool): ', test.followPath('aba') !== null);
+console.log('Invalid followPath check: ', test.followPath('abaabc'));
+console.log('Valid hasSubstring check: ', test.hasSubstring('aba'));
+console.log('Valid hasSuffix check: ', test.hasSuffix('aba'));
+console.log('Invalid hasSubstring check: ', test.hasSubstring('abac'));
+console.log('Invalid hasSuffix check: ', test.hasSuffix('abaa'));
