@@ -6,7 +6,7 @@
 var protoSuffix = {
 	factoryNode: function() {
 		return {
-			next: new Array(this.R)
+			next: {}
 		}
 	},
 	followPath: function(str) {
@@ -15,7 +15,7 @@ var protoSuffix = {
 
 		var currentNode = this.root;
 		for (var i = 0; i < str.length; i++) {
-			var currentChar = str.charCodeAt(i);
+			var currentChar = str[i];
 			if (currentNode.next[currentChar] === undefined) {
 				return null;
 			}
@@ -31,14 +31,13 @@ var protoSuffix = {
 	hasSuffix: function(str) {
 		// Return true iff str is a suffix.
 		var resultNode = this.followPath(str);
-		return (resultNode !== null && resultNode.next['$'.charCodeAt()] !== undefined);
+		return (resultNode !== null && resultNode.next.$ !== undefined);
 	}
 };
 
 function factorySuffix(str) {
 	var suffixTrie = Object.create(protoSuffix);
-	suffixTrie.R = 256; // extended ASCII
-	str = str + '$'; // add terminator symbol
+	str = str + '$'; // add terminal symbol
 	suffixTrie.root = suffixTrie.factoryNode();
 	
 	// generate all suffixes of str
@@ -48,7 +47,7 @@ function factorySuffix(str) {
 
 		// iterate through each character in i'th suffix
 		for (var c = 0; c < currentSuffix.length; c++) {
-			var currentChar = currentSuffix.charCodeAt(c);
+			var currentChar = currentSuffix[c];
 			if (currentNode.next[currentChar] === undefined) {
 				currentNode.next[currentChar] = suffixTrie.factoryNode();
 			}
