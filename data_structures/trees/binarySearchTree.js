@@ -102,16 +102,45 @@ var protoBinarySearchTree = {
 		}
 	},
 	iterate: function() {
+		// in-order iteration
 		// produce queue of values within tree, sorted from min to max
 		var queue = factoryQueue();
-		iterate(this.root, queue);
+		iterate(this.root);
 		return queue;
 
-		function iterate(currentNode, queue) {
+		function iterate(currentNode) {
 			if (currentNode === null) return;
-			iterate(currentNode.left, queue);
+			iterate(currentNode.left);
 			queue.enqueue(currentNode.val);
-			iterate(currentNode.right, queue);
+			iterate(currentNode.right);
+		}
+	},
+	preOrder: function() {
+		// produce queue of values within tree
+		// in pre-order form
+		var queue = factoryQueue();
+		iterate(this.root);
+		return queue;
+
+		function iterate(currentNode) {
+			if (currentNode === null) return;
+			queue.enqueue(currentNode.val);
+			iterate(currentNode.left);
+			iterate(currentNode.right);
+		}
+	},
+	postOrder: function() {
+		// produce a queue of values within tree
+		// in post-order form
+		var queue = factoryQueue();
+		iterate(this.root);
+		return queue;
+
+		function iterate(currentNode) {
+			if (currentNode === null) return;
+			iterate(currentNode.left);
+			iterate(currentNode.right);
+			queue.enqueue(currentNode.val);
 		}
 	},
 	deleteMin: function() {
@@ -198,6 +227,8 @@ test.insert(10);
 test.insert(6);
 console.log('Tree after 8 inserts: ', JSON.stringify(test, null, 2));
 console.log('Queue produced by iterate call: ', test.iterate());
+console.log('Pre-order traversal check: ', test.preOrder());
+console.log('Post-order traversal check: ', test.postOrder());
 console.log('Valid get check: ', test.get(5));
 console.log('Invalid get check: ', test.get(925));
 console.log('Min check: ', test.min());
