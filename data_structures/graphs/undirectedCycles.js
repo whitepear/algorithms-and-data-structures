@@ -18,7 +18,7 @@ function undirectedCycles(graph) {
 	// if (hasSelfLoop(graph)) return;
 	// if (hasParallelEdges(graph)) return;
 	for (var v = 0; v < graph.V; v++) {
-		if (!marked[v]) {
+		if (!marked[v] && cycle === null) {
 			dfs(graph, -1, v);
 		}
 	}
